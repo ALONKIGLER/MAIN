@@ -37,6 +37,7 @@ export interface Product {
   sizes?: string[];
   allOfSizes?: string[];
   status?: "New in" | "limited edition" | "Sold Out" | "50% Discount";
+  fleg?: string;
 }
 
 const DEMO_VARIANTS: ProductVariant[] = [
@@ -149,16 +150,17 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 4,
-    name: "Travel Pet Carrier",
-    description: "Dark pink 2023",
+    name: "איחוד אירופאי",
+    description: "לוחית זיהוי ארופאית",
     price: 28,
-    image: productImgs[3],
+    image: "https://www.muschard24.de/images/product_images/popup_images/002-001.jpg",
     category: "Category 1",
     tags: ["tag1", "tag2"],
     variants: DEMO_VARIANT_COLORS,
     variantType: "color",
     link: "/product-detail/",
     status: "Sold Out",
+    fleg: "eru",
   },
   {
     id: 5,

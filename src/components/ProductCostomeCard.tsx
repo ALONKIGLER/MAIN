@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NcImage from "shared/NcImage/NcImage";
 import LikeButton from "./LikeButton";
@@ -13,6 +13,8 @@ import toast from "react-hot-toast";
 import { Transition } from "@headlessui/react";
 import ModalQuickView from "./ModalQuickView";
 import ProductStatus from "./ProductStatus";
+import { useAppDispatch } from "app/hooks";
+import { getProduct, addProduct } from "app/mediaRunning/product";
 
 export interface ProductCardProps {
   className?: string;
@@ -37,6 +39,44 @@ const ProductCard: FC<ProductCardProps> = ({
   } = data;
   const [variantActive, setVariantActive] = React.useState(0);
   const [showModalQuickView, setShowModalQuickView] = React.useState(false);
+
+  const initialPop: Product = {
+    id: 45,
+    name: "123",
+    price: 545,
+    image:
+      "https://www.muschard24.de/images/product_images/popup_images/002-001.jpg",
+    description: "345",
+    category: "345",
+    tags: ["fgh"],
+    link: "/product-detail/",
+    fleg: "ero",
+  };
+  const [pop, setPop] = useState<Product>(initialPop);
+
+  const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   dispatch(addProduct(pop));
+  // }, []);
+
+  const setChoice = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    console.log("blabla");
+
+    const updatedPop: Product = { ...pop };
+
+    // Update the properties as needed
+    updatedPop.name = "New Name";
+    updatedPop.price = 999;
+    updatedPop.fleg = "ero";
+
+    // Set the updated state
+    setPop(updatedPop);
+
+    dispatch(addProduct(pop));
+  };
 
   //   const notifyAddTocart = ({ size }: { size?: string }) => {
   //     toast.custom(
@@ -239,16 +279,17 @@ const ProductCard: FC<ProductCardProps> = ({
         className={`nc-ProductCard relative flex flex-col bg-transparent ${className}`}
         data-nc-id="ProductCard"
       >
-        <Link to={"/product-detail"} className="absolute inset-0"></Link>
+        {/* <Link to={"/product-detail"} className="absolute inset-0"></Link> */}
 
         <div className="relative flex-shrink-0 bg-slate-50 dark:bg-slate-300 rounded-3xl overflow-hidden z-1 group">
-          <button className="block">
+          <button type="button" onClick={setChoice} className="block">
             <NcImage
-              containerClassName="flex h-44"
+              containerClassName="flex h-40"
               src={image}
               className="object-cover w-full h-full drop-shadow-xl"
             />
           </button>
+          {/* <button onClick={setChoice2}>setChoice2</button> */}
 
           {/* <ProductStatus status={status} /> */}
 

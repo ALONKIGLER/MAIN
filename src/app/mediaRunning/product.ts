@@ -5,7 +5,6 @@ import axios from "axios";
 
 const initialState: Product[] = [
   
-  
 ];   
 
 export const productSlice = createSlice({
@@ -13,29 +12,33 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<Product>) => {
-      const productExists = state.find(p => p.id === action.payload.id);
-      if (!productExists) {
-       
-        console.log("qq",action.payload )
-        state.push(action.payload);
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem("state", serializedState);
-      } else{
-        console.log("poi", action.payload);
-        // const index = state.findIndex(p => p.id === action.payload.id);
-        // const updatedBob = {
-        //   ...productExists,
-        //   quantity: productExists.quantity + action.payload.quantity
-        //   ,
-        // };
       
-        // state[index] = updatedBob;
-        // const serializedState = JSON.stringify(state);
-        // localStorage.setItem("state", serializedState);
-      }
-    },
+  
+      // const productExists = state.find(p => p.id === action.payload.id);
+      // if (!productExists) {
+      //   console.log("sss",state)
+      //   console.log("qq",action.payload )
+      //   state.push(action.payload);
+      //   const serializedState = JSON.stringify(state);
+      //   localStorage.setItem("state", serializedState);
+      // } else{
+        //   console.log("poi", action.payload);
+        //   // const index = state.findIndex(p => p.id === action.payload.id);
+        //   // const updatedBob = {
+          //   //   ...productExists,
+          //   //   quantity: productExists.quantity + action.payload.quantity
+          //   //   ,
+          //   // };
+          
+          //   // state[index] = updatedBob;
+          //   // const serializedState = JSON.stringify(state);
+          //   // localStorage.setItem("state", serializedState);
+          // }
+            state.push(action.payload);
+        },
     getProduct: (state) => {
     console.log("sss")
+    console.log("sss",state)
       const productsStateString = localStorage.getItem("state");
       if (productsStateString !== null) {
      const productsState = JSON.parse(productsStateString);

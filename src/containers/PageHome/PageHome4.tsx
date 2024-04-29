@@ -36,18 +36,23 @@ export default function Scene() {
     console.log("aSD", `+=${slider.current ? slider.current.offsetWidth : 0}`);
     console.log("aD", slider.current);
     let ctx = gsap.context(() => {
-      let panels = gsap.utils.toArray(".panel");
+      let panels = gsap.utils.toArray(".fix");
       gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
+        // xPercent: -100 * (panels.length - 1),
         ease: "none",
         scrollTrigger: {
-          trigger: component.current,
-          pin: true,
-          //   start: "top top",
+          // pinnedContainer: ".App",
+          trigger: ".fix",
           scrub: 1,
-          snap: 1 / (panels.length - 1),
-          end: () => `+=${slider.current ? slider.current.offsetWidth : 0}`, // Add null check here
+          anticipatePin: 1,
+          pinType: "fixed",
+          pin: true,
+          pinSpacing: false,
+          start: ".containerr",
           markers: true,
+          end: "+=1500",
+          // animation: tl,
+          toggleActions: "play none none reverse",
         },
       });
     }, component);
@@ -59,10 +64,10 @@ export default function Scene() {
   // }}
 
   function onLoad(spline: Application) {
-    const obj = spline.findObjectById("72acb3a2-2b53-4a5f-93de-de97b02fce10");
+    const obj = spline.findObjectById("084c7a9b-a46a-4656-a406-94df98091545");
     cube.current = obj;
 
-    const obj2 = spline.findObjectById("c4c40a51-7e3c-4276-9a2a-ca2a50bf8cf4");
+    const obj2 = spline.findObjectById("c2fcdcf7-3acc-4a9c-8f15-0583c48159fd");
     cube2.current = obj2;
 
     console.log("e2r", cube.current);
@@ -72,8 +77,8 @@ export default function Scene() {
   useEffect(() => {
     selectedData2.forEach((product) => {
       if (product.fleg === "ero" && cube.current && cube2.current) {
-        cube.current.visible = true;
-        cube2.current.visible = false;
+        cube.current.visible = false;
+        cube2.current.visible = true;
       }
 
       // if (product.fleg === "ero" && cube.current) {
@@ -114,49 +119,29 @@ export default function Scene() {
     // }
   }
   return (
-    <div className="Appa" w-screen h-screen ref={component}>
-      <div className="firstContainer ">
+    <div ref={component}>
+      <div className=" w-screen h-screen  bg-secondary-100">cool</div>
+      {/* <div className="w-screen h-1/2"> */}
+      <div className="fix flex flex-col justify-center items-center h-96  md:h-96 sm:h-72  w-screen bg-secondary-100 z-50">
+        {/* <div className="  fix h-96 bg-secondary-100"> */}
         <Spline
           scene="https://prod.spline.design/cESggJnYBXJ7Hwd7/scene.splinecode"
           onLoad={onLoad}
         />
+        {/* </div> */}
+        {/* </div> */}
       </div>
-      <div ref={slider} className="containerr bg-primary-50 primary-50">
-        <div className="panel bg-slate-100 bg-primary-50 primary-50">
-          <div>
-            <button type="button" onClick={moveObj}>
-              Move Cube
-            </button>
-            <button onClick={showObj}>222222222 </button>
-            <div className="scroll-down">
-              <div className="arrow">
-                {" "}
-                {/* {selectedData2.length > 0 ? selectedData2[0].name : null} */}
-                {selectedData2.map((product) => (
-                  <li key={product.id}>
-                    {product.name} - ${product.price}
-                  </li>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="panel pl-5 pt-3  primary-50">
-          <SectionFleg
-            heading="בחירת דגם"
-            subHeading=""
-            headingFontClassName="text-2xl font-semibold"
-            headingClassName="mb-3  text-neutral-900 dark:text-neutral-50"
-            // className="bg-amber-300 "
-            // headingClassName=""
-          />
-        </div>
-        {/* <div className="panel  bg-slate-50">TWO</div>
-        <div className="panel purple">THREE</div>
-        <div className="panel red">ONE</div>
-        <div className="panel orange">TWO</div> */}
+
+      <div className=" pl-5 pt-3 bg-secondary-100">
+        <SectionFleg
+          heading="בחירת דגם"
+          subHeading=""
+          headingFontClassName="text-2xl font-semibold"
+          headingClassName="mb-3  text-neutral-900 dark:text-neutral-50"
+        />
       </div>
-      <div className="lastContainer bg-primary-50 ">{/* Last Container */}</div>
+
+      <div className="last flax h-screen bg-primary-50 ">=</div>
     </div>
   );
 }

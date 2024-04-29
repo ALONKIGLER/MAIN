@@ -18,6 +18,7 @@ import PageCollection from "containers/PageCollection";
 import PageSearch from "containers/PageSearch";
 // import PageHome2 from "containers/PageHome/PageHome2";
 import PageHome3 from "containers/PageHome/PageHome3";
+import PageHome4 from "containers/PageHome/PageHome4";
 import ProductDetailPage from "containers/ProductDetailPage/ProductDetailPage";
 import ProductDetailPage2 from "containers/ProductDetailPage/ProductDetailPage2";
 import AccountSavelists from "containers/AccountPage/AccountSavelists";
@@ -36,6 +37,7 @@ export const pages: Page[] = [
   { path: "/", component: PageHome },
   // { path: "/home2", component: PageHome2 },
   { path: "/home3", component: PageHome3 },
+  { path: "/home4", component: PageHome4 },
   //
   { path: "/home-header-2", component: PageHome },
   { path: "/product-detail", component: ProductDetailPage },

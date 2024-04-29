@@ -36,6 +36,7 @@ const ProductCard: FC<ProductCardProps> = ({
     variantType,
     status,
     image,
+    fleg,
   } = data;
   const [variantActive, setVariantActive] = React.useState(0);
   const [showModalQuickView, setShowModalQuickView] = React.useState(false);
@@ -60,23 +61,33 @@ const ProductCard: FC<ProductCardProps> = ({
   //   dispatch(addProduct(pop));
   // }, []);
 
-  const setChoice = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  // function handleClick(event: React.MouseEvent<HTMLElement>) {
 
-    console.log("blabla");
+  function setChoice(event: React.MouseEvent<HTMLElement>) {
+    event.preventDefault();
+
+    console.log("blsabla", fleg);
+    console.log("blsabla", image);
 
     const updatedPop: Product = { ...pop };
 
     // Update the properties as needed
     updatedPop.name = "New Name";
     updatedPop.price = 999;
-    updatedPop.fleg = "ero";
+    // updatedPop.fleg = "6d82cec8-9cd1-4d98-b2bc-7e49560b297a";
+    updatedPop.fleg = fleg;
 
     // Set the updated state
     setPop(updatedPop);
 
+    console.log("blabla", pop);
+
     dispatch(addProduct(pop));
-  };
+  }
+
+  useEffect(() => {
+    dispatch(addProduct(pop));
+  }, [pop]);
 
   //   const notifyAddTocart = ({ size }: { size?: string }) => {
   //     toast.custom(
@@ -282,7 +293,7 @@ const ProductCard: FC<ProductCardProps> = ({
         {/* <Link to={"/product-detail"} className="absolute inset-0"></Link> */}
 
         <div className="relative flex-shrink-0 bg-slate-50 dark:bg-slate-300 rounded-3xl overflow-hidden z-1 group">
-          <button type="button" onClick={setChoice} className="block">
+          <button onClick={setChoice} className="block cursor-pointer">
             <NcImage
               containerClassName="flex h-40"
               src={image}

@@ -34,6 +34,8 @@ export const productSlice = createSlice({
           //   // const serializedState = JSON.stringify(state);
           //   // localStorage.setItem("state", serializedState);
           // }
+          console.log( "action", action.payload)
+            state.push(action.payload);
             state.push(action.payload);
         },
     getProduct: (state) => {

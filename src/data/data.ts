@@ -162,7 +162,7 @@ export const PRODUCTS: Product[] = [
     variantType: "color",
     link: "/product-detail/",
     status: "Sold Out",
-    fleg: "eru",
+    fleg: "b475fc5a-302d-42bb-9a06-01acb8bdf4cb",
   },
   {
     id: 5,

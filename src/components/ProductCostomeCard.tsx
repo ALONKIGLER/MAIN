@@ -293,13 +293,13 @@ const ProductCard: FC<ProductCardProps> = ({
         {/* <Link to={"/product-detail"} className="absolute inset-0"></Link> */}
 
         <div className="relative flex-shrink-0 bg-slate-50 dark:bg-slate-300 rounded-3xl overflow-hidden z-1 group">
-          <button onClick={setChoice} className="block cursor-pointer">
+          <div onClick={setChoice} className="block cursor-pointer">
             <NcImage
               containerClassName="flex h-40"
               src={image}
               className="object-cover w-full h-full drop-shadow-xl"
             />
-          </button>
+          </div>
           {/* <button onClick={setChoice2}>setChoice2</button> */}
 
           {/* <ProductStatus status={status} /> */}

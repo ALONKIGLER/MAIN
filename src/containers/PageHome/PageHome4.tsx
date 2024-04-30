@@ -22,6 +22,7 @@ export default function Scene() {
   const cube = useRef<SPEObject>();
   const cube2 = useRef<SPEObject>();
   const cube3 = useRef<SPEObject>();
+  const cube4 = useRef<SPEObject>();
   const dispatch = useAppDispatch();
   const selectedData2 = useAppSelector((state) => state.products);
 
@@ -76,6 +77,9 @@ export default function Scene() {
 
     const obj3 = spline.findObjectById("bc794e79-b245-44ba-9fcd-624c0dcfce71");
     cube3.current = obj3;
+
+    const obj4 = spline.findObjectById("b475fc5a-302d-42bb-9a06-01acb8bdf4cb");
+    cube4.current = obj4;
   }
 
   useEffect(() => {
@@ -101,11 +105,16 @@ export default function Scene() {
         cube3.current.visible = true;
       }
 
-      console.log("122", product.fleg);
+      if (cube4.current && cube4.current.uuid !== product.fleg) {
+        cube4.current.visible = false;
+        console.log("1");
+      } else if (cube4.current && cube4.current.uuid === product.fleg) {
+        cube4.current.visible = true;
+      }
+
+      console.log("122s", product.fleg);
       if (splineApp) {
         splineApp.emitEvent("mouseDown", `${product.fleg}`);
-
-        console.log("productproduct", product);
       }
     });
   }, [selectedData2]);
@@ -138,10 +147,11 @@ export default function Scene() {
 
   return (
     <div ref={component}>
-      <div className="fix flex flex-col justify-center items-center h-96 md:h-96 sm:h-72 w-screen bg-secondary-100 z-50">
+      <div className="fix flex flex-col justify-center items-center h-96 md:h-96 sm:h-72 w-screen  z-50 bg-primary-50">
         <Spline
           scene="https://prod.spline.design/TvefK7GHeVgaprGq/scene.splinecode"
           onLoad={onLoad}
+          className="bg-primary-50"
         />
       </div>
 
